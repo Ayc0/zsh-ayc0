@@ -48,11 +48,7 @@ dd-done() {
     git branch -D $targetBranch
   fi
 
-  git config --unset "branch.$targetBranch.remote"
-  git config --unset "branch.$targetBranch.merge"
-  git config --unset "branch.$targetBranch.vscode-merge-base"
-  git config --unset "branch.$targetBranch.github-pr-owner-number"
-  git config --unset "branch.$targetBranch.github-pr-base-branch"
+  git config --remove-section "branch.$targetBranch"
 
   return 0
 }
@@ -61,23 +57,17 @@ dd-clean-branches() {
   for branch in $(git branch --merged $mainBranch | grep -vE '^[ *]*(prod|preprod)$');
   do
     git branch -d $branch
-    git config --unset "branch.$branch.remote"
-    git config --unset "branch.$branch.merge"
-    git config --unset "branch.$branch.vscode-merge-base"
+    git config --remove-section "branch.$branch"
   done
   for branch in $(git branch | grep '\--fix-staging');
   do
     git branch -D $branch
-    git config --unset "branch.$branch.remote"
-    git config --unset "branch.$branch.merge"
-    git config --unset "branch.$branch.vscode-merge-base"
+    git config --remove-section "branch.$branch"
   done
   for branch in $(git branch | grep -E 'staging-[0-9]+');
   do
     git branch -D $branch
-    git config --unset "branch.$branch.remote"
-    git config --unset "branch.$branch.merge"
-    git config --unset "branch.$branch.vscode-merge-base"
+    git config --remove-section "branch.$branch"
   done
   return 0
 }
