@@ -51,6 +51,8 @@ dd-done() {
   git config --unset "branch.$targetBranch.remote"
   git config --unset "branch.$targetBranch.merge"
   git config --unset "branch.$targetBranch.vscode-merge-base"
+  git config --unset "branch.$targetBranch.github-pr-owner-number"
+  git config --unset "branch.$targetBranch.github-pr-base-branch"
 
   return 0
 }
