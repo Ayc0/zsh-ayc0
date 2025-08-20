@@ -48,7 +48,7 @@ dd-done() {
     git branch -D $targetBranch
   fi
 
-  git config --remove-section "branch.$targetBranch"
+  # git config --remove-section "branch.$targetBranch"
 
   return 0
 }
@@ -57,17 +57,17 @@ dd-clean-branches() {
   for branch in $(git branch --merged $mainBranch | grep -vE '^[ *]*(prod|preprod)$');
   do
     git branch -d $branch
-    git config --remove-section "branch.$branch"
+    # git config --remove-section "branch.$branch"
   done
   for branch in $(git branch | grep '\--fix-staging');
   do
     git branch -D $branch
-    git config --remove-section "branch.$branch"
+    # git config --remove-section "branch.$branch"
   done
   for branch in $(git branch | grep -E 'staging-[0-9]+');
   do
     git branch -D $branch
-    git config --remove-section "branch.$branch"
+    # git config --remove-section "branch.$branch"
   done
   return 0
 }
