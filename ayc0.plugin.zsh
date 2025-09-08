@@ -77,10 +77,6 @@ alias ci="gc -m 'Empty for CI' --allow-empty -n"
 #  open "https://github.com/$(git config --get remote.origin.url | cut -d ":" -f 2 | cut -d "." -f 1)/compare/$(git name-rev --name-only HEAD)?expand=1"
 #}
 
-# Brew
-alias bu="brew upgrade"
-alias bcu="brew cask upgrade"
-
 # Sweet utils
 who-listen() {
   lsof -t -i :$1
